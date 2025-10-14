@@ -31,7 +31,7 @@ export default function PropertyDetails() {
     {
       title: "Apartment",
       price: "₹20,000 / Month",
-      img: "./assets/images/apartment1.jpg",
+      img: "../assets/images/apartment1.jpg",
       beds: 2,
       baths: 2,
       area: "1000 sqft",
@@ -39,7 +39,7 @@ export default function PropertyDetails() {
     {
       title: "Villa",
       price: "₹45,000 / Month",
-      img: "./assets/images/villa1.jpg",
+      img: "../assets/images/villa1.jpg",
       beds: 4,
       baths: 3,
       area: "2500 sqft",
@@ -47,7 +47,7 @@ export default function PropertyDetails() {
     {
       title: "Studio",
       price: "₹10,000 / Month",
-      img: "./assets/images/studio1.jpg",
+      img: "../assets/images/studio1.jpg",
       beds: 1,
       baths: 1,
       area: "500 sqft",
@@ -102,7 +102,7 @@ export default function PropertyDetails() {
         transition={{ duration: 0.8 }}
       >
         <img
-          src="./assets/images/main.jpg"
+          src="../assets/images/main.jpg"
           alt="Property Main"
           className="w-full h-[380px] sm:h-[450px] object-cover"
         />
