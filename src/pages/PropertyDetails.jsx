@@ -1,4 +1,6 @@
 // src/pages/PropertyDetails.jsx
+import { Link } from "react-router-dom";
+
 import React from "react";
 import {
   MapPin,
@@ -16,6 +18,10 @@ import {
   Mail,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import main from "../assets/images/main.jpg";
+import apartment1 from "../assets/images/apartment1.jpg";
+import villa1 from "../assets/images/villa1.jpg";
+import studio1 from "../assets/images/studio1.jpg";
 
 export default function PropertyDetails() {
   const fadeUp = {
@@ -31,7 +37,7 @@ export default function PropertyDetails() {
     {
       title: "Apartment",
       price: "₹20,000 / Month",
-      img: "../assets/images/apartment1.jpg",
+      img: apartment1,
       beds: 2,
       baths: 2,
       area: "1000 sqft",
@@ -39,7 +45,7 @@ export default function PropertyDetails() {
     {
       title: "Villa",
       price: "₹45,000 / Month",
-      img: "../assets/images/villa1.jpg",
+      img: villa1,
       beds: 4,
       baths: 3,
       area: "2500 sqft",
@@ -47,7 +53,7 @@ export default function PropertyDetails() {
     {
       title: "Studio",
       price: "₹10,000 / Month",
-      img: "../assets/images/studio1.jpg",
+      img: studio1,
       beds: 1,
       baths: 1,
       area: "500 sqft",
@@ -66,9 +72,14 @@ export default function PropertyDetails() {
             </span>
           </div>
           <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
+                <Link to="/" className="text-gray-600 hover:text-teal-600 transition-colors">Home</Link>
             <a href="#" className="hover:text-green-700">
-              Buy/Rent
+              Buy
             </a>
+            {/* <a href="#" className="hover:text-green-700">
+              Rent
+            </a> */}
+               <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
             <a href="#" className="hover:text-green-700">
               Sell
             </a>
@@ -76,13 +87,13 @@ export default function PropertyDetails() {
               Home Loan
             </a>
             <a href="#" className="hover:text-green-700">
-              Advice
-            </a>
-            <a href="#" className="hover:text-green-700">
               Help
             </a>
             <a href="#" className="hover:text-green-700">
-              Contact
+              About Us
+            </a>
+            <a href="#" className="hover:text-green-700">
+              Contact Us
             </a>
           </nav>
           <button className="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 hidden md:block">
@@ -102,7 +113,7 @@ export default function PropertyDetails() {
         transition={{ duration: 0.8 }}
       >
         <img
-          src="../assets/images/main.jpg"
+          src={main}
           alt="Property Main"
           className="w-full h-[380px] sm:h-[450px] object-cover"
         />

@@ -20,8 +20,9 @@ const Header = () => (
         <span className="text-2xl font-bold text-gray-800">ApnaProperty</span>
         </div>
         <div className="hidden md:flex items-center space-x-6">
+              <Link to="/" className="text-gray-600 hover:text-teal-600 transition-colors">Home</Link>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</a>
-        <a href="./PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</a>
+       <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</a>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Home Loans</a>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</a>

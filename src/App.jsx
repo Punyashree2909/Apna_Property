@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/property" element={<PropertyDetails />} />
+        <Route path="/PropertyDetails" element={<PropertyDetails />} />
       </Routes>
     </Router>
   );
