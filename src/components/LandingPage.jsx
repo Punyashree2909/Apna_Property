@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 
 // Helper component for SVG icons
 const Icon = ({ path, className = "w-6 h-6" }) => (
@@ -19,10 +21,12 @@ const Header = () => (
         </div>
         <div className="hidden md:flex items-center space-x-6">
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</a>
-        <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</a>
+        <a href="./PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</a>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</a>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Home Loans</a>
         <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</a>
+        <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</a>
+        <a href="#" className="text-gray-600 hover:text-teal-600 transition-colors">Contact Us</a>
         </div>
         <button className="hidden md:block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
         Log In
