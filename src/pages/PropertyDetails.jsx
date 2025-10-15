@@ -201,9 +201,10 @@ export default function PropertyDetails() {
           {/* Location */}
           <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={4}>
             <h2 className="text-xl font-semibold mb-3">Location</h2>
-            <div className="bg-gray-200 rounded-xl h-64 flex items-center justify-center text-gray-600">
+            {/* <div className="bg-gray-200 rounded-xl h-64 flex items-center justify-center text-gray-600">
               Map showing location of Gokul Society, Borgaon, Nagpur
-            </div>
+            </div> */}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.208219534899!2d79.04791027508531!3d21.183885880504537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c11a3194f013%3A0x37441458132934cd!2sLeo%20Galaxy%2C%20Gokul%20Housing%20Society!5e0!3m2!1sen!2sin!4v1760511526344!5m2!1sen!2sin" className="w-full h-64 " allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </motion.div>
 
           {/* Similar Properties */}
