@@ -1,49 +1,46 @@
-<<<<<<< HEAD
-
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import PropertyDetails from "./pages/PropertyDetails";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+
 import "./index.css";
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/PropertyDetails" element={<PropertyDetails />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
-=======
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
 import "./app.css";
 
-// 1. Import your new page components from the 'pages' directory
-import BuyPage from './pages/BuyPage.jsx';
-import HomePage from './pages/HomePage.jsx';
-import HomeLoanPage  from './pages/HomeLoanPage.jsx';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
+// Components
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import LandingPage from "./components/LandingPage.jsx";
+
+// // Pages
+// import PropertyDetails from "./pages/PropertyDetails.jsx";
+// import AboutUs from "./pages/AboutUs.jsx";
+// // import BuyPage from "./pages/BuyPage.jsx";
+// import HomePage from "./pages/HomePage.jsx";
+// import HomeLoanPage from "./pages/HomeLoanPage.jsx";
+
+// function App() {
+//   return (
+//     <Router>
+//       <Header />
+//       <Routes>
+//         <Route path="/" element={<HomePage />} />
+//         <Route path="/landing" element={<LandingPage />} />
+//         <Route path="/propertydetails" element={<PropertyDetails />} />
+//         <Route path="/about-us" element={<AboutUs />} />
+//         {/* <Route path="/buy" element={<BuyPage />} /> */}
+//         <Route path="/homeloanpage" element={<HomeLoanPage />} />
+//       </Routes>
+//       <Footer />
+//     </Router>
+//   );
+// }
+
 function App() {
   return (
-    // 2. Set up the router
-    <BrowserRouter>
-      <Routes>
-        {/* 3. Define the routes for each page */}
-        <Route path="/" element={<><Header/><HomePage/><Footer/></>} />
-        <Route path="/buy" element={<BuyPage />} />
-        <Route path="/homeloanpage" element={<HomeLoanPage />} />
-        {/* You can add more routes here later for /rent, /sell, etc. */}
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <Header />
+      <Outlet />
+      {/* Your App content goes here. Routes are already handled in index.jsx */}
+      <Footer />
+    </div>
   );
 }
-
 export default App;
->>>>>>> Owais

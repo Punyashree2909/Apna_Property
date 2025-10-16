@@ -11,11 +11,14 @@ const Header = () => (
           <span className="text-2xl font-bold text-gray-800">ApnaProperty</span>
         </Link>
         <div className="hidden md:flex items-center space-x-6">
+               <Link to="/" className="text-gray-600 hover:text-teal-600 transition-colors">Home</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
+          <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link>
           <Link to="/home-loan" className="text-teal-600 font-semibold">Home Loans</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</Link>
+           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
+            <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Contact Us</Link>
         </div>
         <button className="hidden md:block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
           Log In
