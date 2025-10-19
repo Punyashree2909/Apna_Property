@@ -1,14 +1,28 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import LandingPage from './components/LandingPage.jsx'
+=======
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter} from 'react-router-dom';
 
-import './index.css' // ✅ This is required for Tailwind to apply
-import PropertyDetails from './pages/PropertyDetails.jsx'
+import App from './App.jsx';
+import LandingPage from './components/LandingPage.jsx';
+import PropertyDetails from './pages/PropertyDetails.jsx';
+import HomePage from './pages/HomePage.jsx';
+import HomeLoanPage from './pages/HomeLoanPage.jsx';
+
+import './index.css';
+
+>>>>>>> Punyashree
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+<<<<<<< HEAD
     <App />
     
 =======
@@ -39,5 +53,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
 >>>>>>> Owais
   </React.StrictMode>,
+=======
+    {/* <RouterProvider router={router} /> */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+>>>>>>> Punyashree
 );
 

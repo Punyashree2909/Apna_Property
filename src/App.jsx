@@ -1,21 +1,45 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> Punyashree
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import PropertyDetails from "./pages/PropertyDetails";
+import {   Routes, Route } from "react-router-dom";
+
 import "./index.css";
+import "./app.css";
+
+// Components
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import LandingPage from "./components/LandingPage.jsx";
+
+// Pages
+import PropertyDetails from "./pages/PropertyDetails.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import HomeLoanPage from "./pages/HomeLoanPage.jsx";
+import Mainlayout from "./Layout/Mainlayout.jsx";
 
 function App() {
   return (
-    <Router>
+    
+      
+
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/PropertyDetails" element={<PropertyDetails />} />
+        <Route path="/" element={<Mainlayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/propertydetails" element={<PropertyDetails />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+           <Route path="/home-loan" element={<HomeLoanPage />} />
+          {/* <Route path="/buy" element={<BuyPage />} /> */}
+        </Route>
       </Routes>
-    </Router>
+      
   );
 }
+
 
 export default App;
 =======

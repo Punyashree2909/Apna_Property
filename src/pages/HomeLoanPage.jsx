@@ -17,7 +17,11 @@ const HomeLoanPage = () => {
   return (
     <>
       {/* The Header and Footer components will wrap your page content */}
+<<<<<<< HEAD
       <Header />
+=======
+      {/* <Header /> */}
+>>>>>>> Punyashree
       <main>
         <HomeLoanHero />
         <LoanOffers />
@@ -27,7 +31,11 @@ const HomeLoanPage = () => {
         <PreApprovedLoan />
         <FaqSection />
       </main>
+<<<<<<< HEAD
       <Footer />
+=======
+      {/* <Footer /> */}
+>>>>>>> Punyashree
     </>
   );
 };

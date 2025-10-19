@@ -62,7 +62,7 @@ export default function PropertyDetails() {
 
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
-      {/* ====== NAVBAR ====== */}
+      {/* ====== NAVBAR ======
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -79,7 +79,7 @@ export default function PropertyDetails() {
             {/* <a href="#" className="hover:text-green-700">
               Rent
             </a> */}
-               <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
+               {/* <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
             <a href="#" className="hover:text-green-700">
               Sell
             </a>
@@ -88,8 +88,8 @@ export default function PropertyDetails() {
             </a>
             <a href="#" className="hover:text-green-700">
               Help
-            </a>
-            <a href="#" className="hover:text-green-700">
+            </a> */} 
+            {/* <a href="#" className="hover:text-green-700">
               About Us
             </a>
             <a href="#" className="hover:text-green-700">
@@ -102,8 +102,8 @@ export default function PropertyDetails() {
           <button className="md:hidden">
             <Menu className="w-6 h-6 text-gray-600" />
           </button>
-        </div>
-      </header>
+        </div> */}
+      {/* </header> */}
 
       {/* ====== HERO IMAGE ====== */}
       <motion.div
