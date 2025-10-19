@@ -17,7 +17,7 @@ const HomeLoanPage = () => {
   return (
     <>
       {/* The Header and Footer components will wrap your page content */}
-      <Header />
+      {/* <Header /> */}
       <main>
         <HomeLoanHero />
         <LoanOffers />
@@ -27,7 +27,7 @@ const HomeLoanPage = () => {
         <PreApprovedLoan />
         <FaqSection />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

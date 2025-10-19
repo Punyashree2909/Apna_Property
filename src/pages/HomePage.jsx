@@ -44,7 +44,7 @@
   function HomePage() {
     return (
       <div className="bg-white font-sans">
-        <Header />
+        {/* <Header /> */}
         <main>
           <HeroSection />
           <Section title="Popular Owner Properties">
@@ -74,7 +74,7 @@
           </Section>
           <CallToAction />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }
