@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage.jsx';
 import HomeLoanPage from './pages/HomeLoanPage.jsx';
 import './index.css';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
