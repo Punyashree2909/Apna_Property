@@ -13,7 +13,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import PropertyDetails from "./pages/PropertyDetails.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import HomeLoanPage from "./pages/HomeLoanPage.jsx";
-import BuyPage from './pages/BuyPage.jsx'; // Added from Owais's version
+import BuyPage from "./pages/BuyPage.jsx";// Added from Owais's version
 
 function App() {
   return (
