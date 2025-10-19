@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin, Lightbulb, ShieldCheck, Handshake } from "lucide-r
 export default function AboutUs() {
   return (
     <div className="bg-white min-h-screen">
-      {/* ======= NAVBAR ======= */}
+      {/* ======= NAVBAR =======
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -29,7 +29,7 @@ export default function AboutUs() {
             </button>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* ======= ABOUT SECTION ======= */}
       <section className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
@@ -158,14 +158,14 @@ export default function AboutUs() {
         </form>
       </section>
 
-      {/* ======= CTA FOOTER ======= */}
+      {/* ======= CTA FOOTER =======
       <footer className="bg-teal-700 text-white text-center py-10">
         <h2 className="text-2xl font-semibold mb-3">Post Your Property For Free</h2>
         <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg font-medium">
           + Post My Listing Now
         </button>
         <p className="text-teal-100 mt-4 text-sm">© 2025 ApnaProperty. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 }
