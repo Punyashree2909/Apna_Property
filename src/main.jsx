@@ -1,65 +1,41 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import LandingPage from './components/LandingPage.jsx'
-=======
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// Import your main App layout and all page components
 import App from './App.jsx';
-import LandingPage from './components/LandingPage.jsx';
+import HomePage from './pages/HomePage.jsx';
+import HomeLoanPage from './pages/HomeLoanPage.jsx';
 import PropertyDetails from './pages/PropertyDetails.jsx';
-import HomePage from './pages/HomePage.jsx';
-import HomeLoanPage from './pages/HomeLoanPage.jsx';
 
+// Import your global stylesheet
 import './index.css';
 
->>>>>>> Punyashree
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-<<<<<<< HEAD
-    <App />
-    
-=======
-import './index.css';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import HomePage from './pages/HomePage.jsx';
-import HomeLoanPage from './pages/HomeLoanPage.jsx';
-import './index.css';
-
-
+// Define the application routes
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/home-loan",
-    element: <HomeLoanPage />,
+    element: <App />, // App can act as a layout wrapper
+    children: [
+      {
+        index: true, // This makes HomePage the default child route for "/"
+        element: <HomePage />,
+      },
+      {
+        path: "/home-loan",
+        element: <HomeLoanPage />,
+      },
+      {
+        path: "/property-details/:id", // Example route for property details
+        element: <PropertyDetails />,
+      },
+    ],
   },
 ]);
 
+// Render the application
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
->>>>>>> Owais
-  </React.StrictMode>,
-=======
-    {/* <RouterProvider router={router} /> */}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
   </React.StrictMode>
->>>>>>> Punyashree
 );
-
