@@ -44,7 +44,11 @@
   function HomePage() {
     return (
       <div className="bg-white font-sans">
+<<<<<<< HEAD
         <Header />
+=======
+        {/* <Header /> */}
+>>>>>>> Punyashree
         <main>
           <HeroSection />
           <Section title="Popular Owner Properties">
@@ -74,7 +78,11 @@
           </Section>
           <CallToAction />
         </main>
+<<<<<<< HEAD
         <Footer />
+=======
+        {/* <Footer /> */}
+>>>>>>> Punyashree
       </div>
     );
   }
