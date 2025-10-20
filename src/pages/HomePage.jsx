@@ -26,7 +26,13 @@ const freshProperties = [
   { image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1980&auto=format&fit=crop', price: '₹ 30,000/mo', name: 'Studio Apartment', beds: 1, baths: 1, sqft: 800, type: 'For Rent' },
 ];
 
-const agents = [{ name: 'Rohan Sharma' }, { name: 'Priya Mehta' }, { name: 'Ankit Desai' }, { name: 'Sneha Patil' }, { name: 'Vikram Singh' }];
+const agents = [
+  { name: 'Rohan Sharma' },
+  { name: 'Priya Mehta' },
+  { name: 'Ankit Desai' },
+  { name: 'Sneha Patil' },
+  { name: 'Vikram Singh' },
+];
 
 const services = [
   { iconPath: "M2.25 21h19.5m-18-18v18m10.5-18v18m-6.75-13.5l6.75 7.5 6.75-7.5m-1.5-4.5h.008v.008h-.008v-.008z", title: "Rental Agreement", description: "Hassle-free online rental agreements delivered to your home." },
@@ -45,38 +51,46 @@ function HomePage() {
   return (
     <div className="bg-white font-sans">
       <Header />
+
       <main>
         <HeroSection />
+
         <Section title="Popular Owner Properties">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {properties.map((prop, index) => <PropertyCard key={index} {...prop} />)}
           </div>
         </Section>
+
         <Section title="AP Preferred Agents in Bengaluru" bgColor="bg-white">
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
             {agents.map((agent, index) => <AgentCard key={index} {...agent} />)}
           </div>
         </Section>
+
         <Section title="Property Service">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
             {services.map((service, index) => <ServiceCard key={index} {...service} />)}
           </div>
         </Section>
+
         <Section title="Your Real Estate Guide">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {guides.map((guide, index) => <GuideCard key={index} {...guide} />)}
           </div>
         </Section>
+
         <Section title="Fresh Properties in Bengaluru" bgColor="bg-white">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {freshProperties.map((prop, index) => <PropertyCard key={index} {...prop} />)}
           </div>
         </Section>
+
         <CallToAction />
       </main>
+
       <Footer />
     </div>
   );
 }
 
-export default HomePage;  
+export default HomePage;
