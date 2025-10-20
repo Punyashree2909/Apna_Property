@@ -3,7 +3,7 @@ import React from "react";
 import {   Routes, Route } from "react-router-dom";
 
 import "./index.css";
-import "./app.css";
+import "./App.css";
 
 // Components
 import Header from "./components/Header.jsx";
