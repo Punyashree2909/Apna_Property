@@ -1,3 +1,5 @@
+// src/components/Header.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from './Icon.jsx'; // Assuming you have this component
@@ -17,13 +19,13 @@ const Header = () => (
         {/* Navigation Links - RESOLVED */}
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-gray-600 hover:text-teal-600 transition-colors">Home</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</Link>
-          <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link>
+          <Link to="/buy" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</Link>
+          <Link to="/propertydetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
+          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link> {/* You'll need to create a /sell route for this one later */}
           <Link to="/home-loan" className="text-teal-600 font-semibold">Home Loans</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Contact Us</Link>
+          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</Link> {/* And a /help route for this one */}
+          <Link to="/about-us" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
+          <Link to="/contact-us" className="text-gray-600 hover:text-teal-600 transition-colors">Contact Us</Link>
         </div>
         
         <button className="hidden md:block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
