@@ -1,6 +1,7 @@
 // src/pages/AboutUs.jsx
 import React from "react";
 import { Mail, Phone, MapPin, Lightbulb, ShieldCheck, Handshake } from "lucide-react";
+import aboutus from "../assets/images/aboutus.jpg";
 
 export default function AboutUs() {
   return (
@@ -41,7 +42,7 @@ export default function AboutUs() {
           </p>
         </div>
         <img
-          src="/aboutus.jpg"
+          src={aboutus}
           alt="About ApnaProperty"
           className="rounded-2xl shadow-md w-full object-cover h-72"
         />

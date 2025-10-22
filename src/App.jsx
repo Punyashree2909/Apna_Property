@@ -27,9 +27,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/landing" element={<LandingPage />} />
           <Route path="/propertydetails" element={<PropertyDetails />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/about-us" element={<AboutUs />} />
            <Route path="/home-loan" element={<HomeLoanPage />} />
-          {/* <Route path="/buy" element={<BuyPage />} /> */}
         </Route>
       </Routes>
       

@@ -17,7 +17,7 @@ const Header = () => (
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link>
           <Link to="/home-loan" className="text-gray-600 hover:text-teal-600 transition-colors">Home Loans</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</Link>
-           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
+           <Link to="/about-us" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
             <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Contact Us</Link>
         </div>
         <button className="hidden md:block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
