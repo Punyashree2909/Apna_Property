@@ -17,7 +17,7 @@ const HomeLoanPage = () => {
   return (
     <>
       {/* Header and Footer wrapping page content */}
-      <Header />
+    
 
       <main>
         <HomeLoanHero />
@@ -29,7 +29,7 @@ const HomeLoanPage = () => {
         <FaqSection />
       </main>
 
-      <Footer />
+      
     </>
   );
 };

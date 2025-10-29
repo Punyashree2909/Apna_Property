@@ -50,7 +50,7 @@ const guides = [
 function HomePage() {
   return (
     <div className="bg-white font-sans">
-      <Header />
+     
 
       <main>
         <HeroSection />
@@ -88,7 +88,7 @@ function HomePage() {
         <CallToAction />
       </main>
 
-      <Footer />
+  
     </div>
   );
 }
