@@ -1,12 +1,12 @@
 import React from 'react';
 
-const BuyPage = () => {
+const SellPage = () => {
   return (
     <div>
-      <h1>This is the Buy Page</h1>
+      <h1>This is the Sell page</h1>
       {/* You can add all your page content inside this div */}
     </div>
   );
 };
 
-export default BuyPage;
+export default SellPage;

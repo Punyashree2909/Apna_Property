@@ -15,7 +15,11 @@ import HomeLoanPage from "./pages/HomeLoanPage.jsx";
 import BuyPage from "./pages/BuyPage.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import SignUp from "./pages/SignUp.jsx"; 
-import Login from './pages/Login.jsx'; // This import was already correct!
+import Login from './pages/Login.jsx'; 
+import RentPage from "./pages/RentPage.jsx";
+// ⬇️ ADD THESE IMPORTS ⬇️
+import SellPage from "./pages/SellPage.jsx"; 
+import HelpPage from "./pages/HelpPage.jsx"; 
 
 function App() {
  return (
@@ -25,12 +29,18 @@ function App() {
  <Route index element={<HomePage />} />
  <Route path="landing" element={<LandingPage />} />
  <Route path="propertydetails" element={<PropertyDetails />} />
-<Route path="about-us" element={<AboutUs />} />
+ <Route path="about-us" element={<AboutUs />} />
  <Route path="home-loan" element={<HomeLoanPage />} />
  <Route path="buy" element={<BuyPage />} />
+ <Route path="rent" element={<RentPage />} /> 
+
+ {/* ⬇️ ADD THESE ROUTES ⬇️ */}
+ <Route path="sell" element={<SellPage />} />
+ <Route path="help" element={<HelpPage />} />
+
  <Route path="contact-us" element={<ContactUs />} />
  <Route path="signup" element={<SignUp />} /> 
- <Route path="login" element={<Login />} /> {/* <-- I added this line */}
+ <Route path="login" element={<Login />} />
 </Route>
 </Routes>
 );

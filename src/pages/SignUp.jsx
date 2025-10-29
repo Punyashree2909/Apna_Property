@@ -298,11 +298,7 @@ export default function SignUp() {
       {/* Render the modal if isModalOpen is true */}
       {isModalOpen && <TermsModal onClose={() => setIsModalOpen(false)} />}
       
-      {/* Footer "Made with Visually" */}
-      <footer className="absolute bottom-4 left-4 text-xs text-gray-500 flex items-center">
-        Made with
-        <img src="https://assets-global.website-files.com/609a63375c31d1712a868a29/609d94943f656b26d18a4f66_visualy-logo-small.svg" alt="Visually logo" className="h-3 ml-1" />
-      </footer>
+                    
     </div>
   );
 }
