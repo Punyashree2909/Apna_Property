@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "chart.js": "^4.5.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.545.0",
+    "mongoose": "^8.19.2",
     "react": "^19.1.1",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.1.1",
@@ -34,5 +38,18 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.14",
     "vite": "^7.1.7"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Punyashree2909/Apna_Property.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Punyashree2909/Apna_Property/issues"
+  },
+  "homepage": "https://github.com/Punyashree2909/Apna_Property#readme"
 }
