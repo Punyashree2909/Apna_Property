@@ -1,36 +1,261 @@
-import React from 'react';
-import Icon from './Icon.jsx';
+import React, { useState } from 'react';
 
-const HeroSection = () => (
-  <div className="relative bg-gray-800 h-[500px] flex items-center justify-center">
-    <div className="absolute inset-0">
-      <img
-        src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop"
-        alt="Modern living room"
-        className="w-full h-full object-cover opacity-50"
-        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1920x1080/333/fff?text=Living+Room'; }}
-      />
-    </div>
-    <div className="relative z-10 text-center text-white px-4">
-      <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">We've got properties in <span className="text-teal-400">Bengaluru</span> for everyone</h1>
-      <div className="bg-white p-4 md:p-6 rounded-xl shadow-2xl max-w-4xl mx-auto mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-          <div className="relative md:col-span-3">
-            <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5 absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search for locality, landmark, project or builder"
-              className="w-full h-12 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
-            />
-          </div>
-          <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-transform duration-300 flex items-center justify-center space-x-2 h-12">
-            <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
-            <span>Search</span>
+// Re-created Icon component since it was in a separate file
+const Icon = ({ path, className = "w-6 h-6" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className={className}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d={path} />
+  </svg>
+);
+
+// List of 24 famous Indian cities
+const famousCities = [
+  "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Ahmedabad", "Chennai",
+  "Kolkata", "Surat", "Pune", "Jaipur", "Lucknow", "Kanpur",
+  "Nagpur", "Indore", "Thane", "Bhopal", "Visakhapatnam", "Patna",
+  "Vadodara", "Ghaziabad", "Ludhiana", "Agra", "Nashik", "Faridabad"
+];
+
+// Property type options based on the active tab
+const propertyTypeOptions = {
+  buy: ["Apartment", "Independent House", "Villa", "Plot", "Builder Floor"],
+  rent: ["Apartment", "Independent House", "Villa", "Builder Floor", "Studio Apartment", "PG/Co-living"],
+  commercial: ["Office Space", "Shop", "Showroom", "Warehouse", "Commercial Land", "Co-working"]
+};
+
+// Budget options based on the active tab
+const budgetOptions = {
+  buy: ["₹10 Lac", "₹20 Lac", "₹30 Lac", "₹40 Lac", "₹50 Lac", "₹60 Lac", "₹70 Lac", "₹80 Lac", "₹90 Lac", "₹1 Cr", "₹1.25 Cr", "₹1.5 Cr", "₹2 Cr", "Above ₹2 Cr"],
+  rent: ["₹5,000", "₹10,000", "₹15,000", "₹20,000", "₹25,000", "₹30,000", "₹35,000", "₹40,000", "₹45,000", "₹50,000", "Above ₹50,000"],
+  commercial: ["₹10,000", "₹20,000", "₹30,000", "₹50,000", "₹75,000", "₹1 Lac", "₹1.5 Lac", "₹2 Lac", "₹3 Lac", "₹4 Lac", "₹5 Lac", "Above ₹5 Lac"]
+};
+
+// Selection Modal Component
+const SelectionModal = ({ title, options, onClose, onSelect, gridColsClass = "grid-cols-2 sm:grid-cols-3 md:grid-cols-4" }) => {
+  return (
+    // Backdrop with blur
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30 transition-opacity" // Changed for blur effect
+      onClick={onClose}
+    >
+      {/* Modal Panel */}
+      <div
+        className="relative z-60 w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6 shadow-2xl transition-all"
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+      >
+        {/* Modal Header */}
+        <div className="flex items-center justify-between pb-4 border-b border-gray-200">
+          <h2 className="text-2xl font-semibold text-gray-800">{title}</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+            aria-label="Close modal"
+          >
+            <Icon path="M6 18L18 6M6 6l12 12" className="w-6 h-6" />
           </button>
+        </div>
+        
+        {/* Items Grid */}
+        <div className="mt-6 max-h-[60vh] overflow-y-auto pr-2">
+          <div className={`grid ${gridColsClass} gap-4`}>
+            {options.map((option) => (
+              <button
+                key={option}
+                onClick={() => onSelect(option)}
+                className="w-full text-left p-3 text-gray-700 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
+// Main Hero Section Component
+const HeroSection = () => {
+  // State for the active tab (Buy, Rent, Commercial)
+  const [activeTab, setActiveTab] = useState('buy');
+  
+  // State for the selected city
+  const [selectedCity, setSelectedCity] = useState('Bengaluru'); // Default from image
+  
+  // State for controlling the city modal
+  const [isCityModalOpen, setIsCityModalOpen] = useState(false);
+
+  // State for Property Type
+  const [selectedPropertyType, setSelectedPropertyType] = useState('Property Type');
+  const [isPropertyTypeModalOpen, setIsPropertyTypeModalOpen] = useState(false);
+
+  // State for Budget
+  const [selectedBudget, setSelectedBudget] = useState('Budget');
+  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
+
+  // Handler to change the selected city
+  const handleCitySelect = (city) => {
+    setSelectedCity(city);
+    setIsCityModalOpen(false);
+  };
+
+  // Handler to change the selected property type
+  const handlePropertyTypeSelect = (type) => {
+    setSelectedPropertyType(type);
+    setIsPropertyTypeModalOpen(false);
+  };
+
+  // Handler to change the selected budget
+  const handleBudgetSelect = (budget) => {
+    setSelectedBudget(budget);
+    setIsBudgetModalOpen(false);
+  };
+
+  // Handler to change the main tab (Buy/Rent/Commercial)
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+    // Reset dependent filters
+    setSelectedPropertyType('Property Type');
+    setSelectedBudget('Budget');
+  };
+
+  // Common class for tab buttons
+  const tabButtonClass = "flex-1 py-4 px-2 text-center font-semibold border-b-4 transition-all duration-300 ease-in-out";
+  
+  // Common class for filter buttons
+  const filterButtonClass = "flex items-center justify-between w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50";
+
+  return (
+    <>
+      <div className="relative h-[550px] md:h-[500px] flex items-center justify-center">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop"
+            alt="Modern living room"
+            className="w-full h-full object-cover opacity-50"
+            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1920x1080/333/fff?text=Living+Room'; }}
+          />
+        </div>
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gray-900 opacity-40"></div>
+
+        {/* Content */}
+        <div className="relative z-10 text-center text-white px-4 w-full max-w-5xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            We've got properties in <span className="text-teal-400">{selectedCity}</span> for everyone
+          </h1>
+          
+          {/* Main Search Box */}
+          <div className="bg-white p-4 md:p-6 rounded-xl shadow-2xl max-w-4xl mx-auto mt-8 text-gray-900">
+            
+            {/* Tabs: Buy, Rent, Commercial */}
+            <div className="flex border-b border-gray-200 -mt-4 -mx-4 md:-mt-6 md:-mx-6 mb-4 md:mb-6">
+              <button
+                onClick={() => handleTabClick('buy')}
+                className={`${tabButtonClass} ${activeTab === 'buy' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+              >
+                Buy
+              </button>
+              <button
+                onClick={() => handleTabClick('rent')}
+                className={`${tabButtonClass} ${activeTab === 'rent' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+              >
+                Rent
+              </button>
+              <button
+                onClick={() => handleTabClick('commercial')}
+                className={`${tabButtonClass} ${activeTab === 'commercial' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+              >
+                Commercial
+              </button>
+            </div>
+
+            {/* Search Input and Button */}
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              <div className="relative w-full flex-grow">
+                <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5 absolute top-1/2 left-4 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search for locality, landmark, project or builder"
+                  className="w-full h-14 pl-12 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                />
+              </div>
+              <button className="w-full md:w-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 h-14">
+                <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
+                <span>Search</span>
+              </button>
+            </div>
+
+            {/* Filter Buttons (now 3) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"> {/* Adjusted grid-cols */}
+              <button 
+                onClick={() => setIsCityModalOpen(true)} // This opens the modal
+                className={filterButtonClass}
+              >
+                <span>{selectedCity}</span>
+                <Icon path="M19 9l-7 7-7-7" className="w-4 h-4 text-gray-500" />
+              </button>
+              <button 
+                onClick={() => setIsPropertyTypeModalOpen(true)}
+                className={filterButtonClass}
+              >
+                <span>{selectedPropertyType}</span>
+                <Icon path="M19 9l-7 7-7-7" className="w-4 h-4 text-gray-500" />
+              </button>
+              <button 
+                onClick={() => setIsBudgetModalOpen(true)}
+                className={filterButtonClass}
+              >
+                <span>{selectedBudget}</span>
+                <Icon path="M19 9l-7 7-7-7" className="w-4 h-4 text-gray-500" />
+              </button>
+              {/* "More Filters" button removed */}
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      {/* Render the Modals */}
+      {isCityModalOpen && (
+        <SelectionModal 
+          title="Select a City"
+          options={famousCities}
+          onClose={() => setIsCityModalOpen(false)} 
+          onSelect={handleCitySelect} 
+        />
+      )}
+
+      {isPropertyTypeModalOpen && (
+        <SelectionModal 
+          title="Select Property Type"
+          options={propertyTypeOptions[activeTab]}
+          onClose={() => setIsPropertyTypeModalOpen(false)} 
+          onSelect={handlePropertyTypeSelect}
+          gridColsClass="grid-cols-2 sm:grid-cols-3"
+        />
+      )}
+
+      {isBudgetModalOpen && (
+        <SelectionModal 
+          title="Select Budget"
+          options={budgetOptions[activeTab]}
+          onClose={() => setIsBudgetModalOpen(false)} 
+          onSelect={handleBudgetSelect}
+          gridColsClass="grid-cols-2 sm:grid-cols-3"
+        />
+      )}
+    </>
+  );
+};
+
+// Use default export for the main component
 export default HeroSection;
