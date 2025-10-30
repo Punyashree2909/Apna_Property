@@ -16,6 +16,7 @@ import AboutUs from "./pages/AboutUs.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import HomeLoanPage from "./pages/HomeLoanPage.jsx";
 import Mainlayout from "./Layout/Mainlayout.jsx";
+import SellPage from "./pages/SellPage.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/propertydetails" element={<PropertyDetails />} />
           <Route path="/about-us" element={<AboutUs />} />
            <Route path="/home-loan" element={<HomeLoanPage />} />
+            <Route path="/sell_page" element={<SellPage />} />
         </Route>
       </Routes>
       

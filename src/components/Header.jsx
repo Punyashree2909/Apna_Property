@@ -14,7 +14,7 @@ const Header = () => (
                <Link to="/" className="text-gray-600 hover:text-teal-600 transition-colors">Home</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Buy</Link>
           <Link to="/PropertyDetails" className="text-gray-600 hover:text-teal-600 transition-colors">Rent</Link>
-          <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link>
+          <Link to="/sell_page" className="text-gray-600 hover:text-teal-600 transition-colors">Sell</Link>
           <Link to="/home-loan" className="text-gray-600 hover:text-teal-600 transition-colors">Home Loans</Link>
           <Link to="#" className="text-gray-600 hover:text-teal-600 transition-colors">Help</Link>
            <Link to="/about-us" className="text-gray-600 hover:text-teal-600 transition-colors">About Us</Link>
