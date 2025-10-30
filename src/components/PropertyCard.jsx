@@ -2,7 +2,8 @@ import React from 'react';
 import Icon from './Icon.jsx';
 
 const PropertyCard = ({ image, price, name, beds, baths, sqft, type }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden group transform hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+  // --- THIS LINE IS UPDATED ---
+  <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-all duration-300 flex flex-col h-full cursor-pointer hover:-translate-y-1 hover:shadow-xl">
     <div className="relative h-48">
       <img
         src={image}
@@ -33,4 +34,4 @@ const PropertyCard = ({ image, price, name, beds, baths, sqft, type }) => (
   </div>
 );
 
-export default PropertyCard; 
+export default PropertyCard;

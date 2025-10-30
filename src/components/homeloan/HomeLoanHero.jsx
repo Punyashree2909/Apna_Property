@@ -1,36 +1,79 @@
-        import React from 'react';
+import React from 'react';
+
+// --- IMPORTANT ---
+// 1. Make sure you have imported your image. For this code, I'm
+//    assuming the image is in your `public` folder.
+// 2. You might need to adjust the tint color/opacity (e.g., 'bg-cyan-50/80')
+//    to get the exact look you want.
 
 const HomeLoanHero = () => {
   return (
-    <section className="hero-bg py-20 md:py-24">
+    <section 
+      className="py-20 md:py-24 bg-cover bg-center"
+      // Change 1: Added inline style for the background image.
+      // Make sure to replace the path with the correct one for your project.
+      style={{ backgroundImage: "url('/Home Loan hero.jpg')" }}
+    >
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left text-white">
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Your Dream Home Awaits.</h1>
-            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto md:mx-0">Get the best home loan offers from 40+ partner banks. Simple, transparent, and fast approvals.</p>
+          
+          {/* --- Text Content (Left Side) --- */}
+          <div className="text-center md:text-left">
+            {/* Change 2: Updated text color from 'text-white' to 'text-gray-900' 
+              to be dark and readable on the light background image.
+            */}
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
+              Your Dream Home Awaits.
+            </h1>
+            {/* Change 3: Updated text color from 'text-gray-200' to 'text-gray-700'.
+              Change 4: Updated the paragraph text to match the image exactly.
+            */}
+            <p className="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0">
+              Partner with Apna Property to find the best home loan offers from over 40+ leading banks, tailored just for you.
+            </p>
           </div>
-          <div id="loan-form" className="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md mx-auto md:mx-0">
-            <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Find Your Best Loan Offer</h2>
+
+          {/* --- Form Card (Right Side) --- */}
+          <div id="loan-form" 
+            // Change 5: Replaced 'bg-white' with a translucent, tinted background
+            // and added a 'backdrop-blur' for the frosted glass effect.
+            className="bg-cyan-50/80 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md mx-auto md:mx-0"
+          >
+            {/* Change 6: Updated title to "Offers" (plural) */}
+            <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Find Your Best Loan Offers</h2>
             <form className="grid grid-cols-1 gap-4">
               <div>
                 <label htmlFor="loan-amount" className="block text-sm font-medium text-left text-gray-600 mb-1">Loan Amount (₹)</label>
-                <input type="number" id="loan-amount" placeholder="e.g., 50,00,000" className="w-full p-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                {/* Change 7: Removed 'border' and added 'bg-white' for the solid white input look */}
+                <input 
+                  type="number" 
+                  id="loan-amount" 
+                  placeholder="e.g., 50,00,000" 
+                  className="w-full p-3 bg-white rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                />
               </div>
               <div>
                 <label htmlFor="mobile-number" className="block text-sm font-medium text-left text-gray-600 mb-1">Mobile Number</label>
-                <input type="tel" id="mobile-number" placeholder="+91 98765 43210" className="w-full p-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                {/* Change 8: Updated placeholder to match image */}
+                <input 
+                  type="tel" 
+                  id="mobile-number" 
+                  placeholder="e.g., 9876543210" 
+                  className="w-full p-3 bg-white rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                />
               </div>
               <div>
                 <label htmlFor="city" className="block text-sm font-medium text-left text-gray-600 mb-1">City</label>
-                <input type="text" id="city" placeholder="e.g., Mumbai" className="w-full p-3 border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                <input 
+                  type="text" 
+                  id="city" 
+                  placeholder="e.g., Mumbai" 
+                  className="w-full p-3 bg-white rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                />
               </div>
               <button type="submit" className="w-full bg-teal-600 text-white p-3 rounded-lg font-semibold hover:bg-teal-700 transition-transform duration-300 transform hover:scale-105 mt-2">Check Offers</button>
             </form>
-            <div className="flex items-center justify-center mt-4 text-xs text-gray-500">
-              {/* Note: You might need to handle icons differently in React, e.g., with an icon library like lucide-react */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-gray-400"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-              By continuing, you agree to our Terms & Conditions.
-            </div>
+            {/* Change 9: Removed the "By continuing..." footer div, as it's not in the target image */}
           </div>
         </div>
       </div>
