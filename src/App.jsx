@@ -19,7 +19,7 @@ import SignUp from "./pages/SignUp.jsx";
 import Login from './pages/Login.jsx';
 import RentPage from "./pages/RentPage.jsx";
 // ⬇️ ADD THESE IMPORTS ⬇️
-import SellPage from "./pages/SellPage.jsx";
+import SellPage from "./pages/sellpage.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
 
 function App() {
