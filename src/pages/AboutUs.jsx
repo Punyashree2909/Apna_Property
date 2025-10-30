@@ -1,36 +1,13 @@
 // src/pages/AboutUs.jsx
 import React from "react";
 import { Mail, Phone, MapPin, Lightbulb, ShieldCheck, Handshake } from "lucide-react";
+import { motion } from "framer-motion";
 import aboutus from "../assets/images/aboutus.jpg";
 
 export default function AboutUs() {
   return (
     <div className="bg-white min-h-screen">
-      {/* ======= NAVBAR =======
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="ApnaProperty" className="w-8" />
-            <span className="text-xl font-bold text-green-700">Apnaproperty</span>
-          </div>
-          <nav className="hidden md:flex gap-6 text-gray-700 font-medium">
-            <a href="/" className="hover:text-green-700">Buy/Rent</a>
-            <a href="#" className="hover:text-green-700">Sell</a>
-            <a href="#" className="hover:text-green-700">Home loans</a>
-            <a href="#" className="hover:text-green-700">AP Advice</a>
-            <a href="#" className="hover:text-green-700">Help</a>
-            <a href="#" className="hover:text-green-700">Commercial</a>
-          </nav>
-          <div className="flex gap-3">
-            <button className="border border-green-700 text-green-700 px-4 py-1.5 rounded-lg hover:bg-green-50">
-              Shortlisted Properties
-            </button>
-            <button className="bg-green-700 text-white px-4 py-1.5 rounded-lg hover:bg-green-800">
-              Login
-            </button>
-          </div>
-        </div>
-      </header> */}
+      
 
       {/* ======= ABOUT SECTION ======= */}
       <section className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
@@ -107,7 +84,7 @@ export default function AboutUs() {
       </section>
 
       {/* ======= TEAM ======= */}
-      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+      {/* <section className="max-w-6xl mx-auto px-4 py-16 text-center">
         <h2 className="text-2xl font-bold mb-8">Meet Our Team</h2>
         <div className="grid md:grid-cols-4 gap-6">
           {["CEO & Founder", "Chief Operating Officer", "Head of Technology", "Head of Sales"].map(
@@ -132,7 +109,68 @@ export default function AboutUs() {
             )
           )}
         </div>
-      </section>
+      </section> */}
+
+      {/* // ======= TEAM SECTION ======= */}
+
+
+<section className="max-w-6xl mx-auto px-4 py-16 text-center">
+  <h2 className="text-3xl font-bold mb-12 text-gray-900">
+    Meet Our <span className="text-green-700">Team</span>
+  </h2>
+
+  <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+    {[
+      { name: "Priya Sharma", role: "CEO & Founder", color: "bg-purple-600", glow: "shadow-purple-500/50" },
+      { name: "Rohan Mehta", role: "Chief Operating Officer", color: "bg-blue-500", glow: "shadow-blue-500/50" },
+      { name: "Ananya Patel", role: "Head of Technology", color: "bg-cyan-500", glow: "shadow-cyan-500/50" },
+      { name: "Arjun Singh", role: "Head of Sales", color: "bg-green-600", glow: "shadow-green-500/50" },
+    ].map((member, i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: i * 0.2 }}
+        className="group relative p-6 bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+      >
+        {/* Profile circle with glow */}
+        <div
+          className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center text-white text-xl font-semibold ${member.color} ${member.glow} shadow-lg group-hover:scale-110 transition-transform`}
+        >
+          {member.name.split(" ")[0][0]}
+          {member.name.split(" ")[1][0]}
+        </div>
+
+        {/* Info */}
+        <h3 className="mt-4 text-lg font-semibold text-gray-800">{member.name}</h3>
+        <p className="text-sm text-gray-500">{member.role}</p>
+
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-green-700/90 to-green-800/90 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex flex-col items-center justify-center text-white p-4">
+          <p className="text-sm italic mb-2">“Dedicated to excellence and innovation.”</p>
+          <div className="flex gap-4 mt-2">
+            <a href="#" className="hover:text-gray-200 transition">
+              <i className="fab fa-linkedin text-lg"></i>
+            </a>
+            <a href="#" className="hover:text-gray-200 transition">
+              <i className="fab fa-twitter text-lg"></i>
+            </a>
+            <a href="#" className="hover:text-gray-200 transition">
+              <i className="fab fa-envelope text-lg"></i>
+            </a>
+          </div>
+        </div>
+
+        {/* Soft glow ring around card */}
+        <div
+          className={`absolute inset-0 rounded-2xl blur-lg opacity-0 group-hover:opacity-70 ${member.glow} transition-opacity duration-500 pointer-events-none`}
+        ></div>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
 
       {/* ======= CONTACT ======= */}
       <section className="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10">
@@ -159,14 +197,7 @@ export default function AboutUs() {
         </form>
       </section>
 
-      {/* ======= CTA FOOTER =======
-      <footer className="bg-teal-700 text-white text-center py-10">
-        <h2 className="text-2xl font-semibold mb-3">Post Your Property For Free</h2>
-        <button className="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-lg font-medium">
-          + Post My Listing Now
-        </button>
-        <p className="text-teal-100 mt-4 text-sm">© 2025 ApnaProperty. All rights reserved.</p>
-      </footer> */}
+      
     </div>
   );
 }
