@@ -1,5 +1,7 @@
 import React from 'react';
-import AccordionItem from './AccordionItem';
+// Assuming AccordionItem component is in the same directory structure
+// The functionality (arrow, expand/collapse) is now inside AccordionItem
+import AccordionItem from './AccordionItem'; 
 
 const faqData = [
     {
@@ -20,10 +22,14 @@ const FaqSection = () => {
     return (
         <section className="py-16">
             <div className="container mx-auto px-6 max-w-4xl">
-                <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-4">
                     {faqData.map((faq, index) => (
-                        <AccordionItem key={index} question={faq.question} answer={faq.answer} />
+                        <AccordionItem 
+                            key={index} 
+                            question={faq.question} 
+                            answer={faq.answer} 
+                        />
                     ))}
                 </div>
             </div>

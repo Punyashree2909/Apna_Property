@@ -20,16 +20,16 @@ const HomeLoanHero = () => {
           {/* --- Text Content (Left Side) --- */}
           <div className="text-center md:text-left">
             {/* Change 2: Updated text color from 'text-white' to 'text-gray-900' 
-              to be dark and readable on the light background image.
+                to be dark and readable on the light background image.
             */}
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
               Your Dream Home Awaits.
             </h1>
             {/* Change 3: Updated text color from 'text-gray-200' to 'text-gray-700'.
-              Change 4: Updated the paragraph text to match the image exactly.
+                Change 4: Updated the paragraph text to match the image exactly.
             */}
             <p className="text-lg md:text-xl text-gray-700 max-w-xl mx-auto md:mx-0">
-              Partner with Apna Property to find the best home loan offers from over 40+ leading banks, tailored just for you.
+              Partner with Apna Property to find the best home loan offers from over 10+ leading banks, tailored just for you.
             </p>
           </div>
 
@@ -45,11 +45,12 @@ const HomeLoanHero = () => {
               <div>
                 <label htmlFor="loan-amount" className="block text-sm font-medium text-left text-gray-600 mb-1">Loan Amount (₹)</label>
                 {/* Change 7: Removed 'border' and added 'bg-white' for the solid white input look */}
+                {/* Change 10: Added classes to hide the number input's increase/decrease buttons */}
                 <input 
                   type="number" 
                   id="loan-amount" 
                   placeholder="e.g., 50,00,000" 
-                  className="w-full p-3 bg-white rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500" 
+                  className="w-full p-3 bg-white rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" 
                 />
               </div>
               <div>
