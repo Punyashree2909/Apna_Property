@@ -2,7 +2,7 @@
 import React from "react";
 import { Mail, Phone, MapPin, Lightbulb, ShieldCheck, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
-import aboutus from "../assets/images/aboutus.jpg";
+import aboutUs from "../assets/images/About-Us.jpg";
 
 export default function AboutUs() {
   return (
@@ -19,9 +19,9 @@ export default function AboutUs() {
           </p>
         </div>
         <img
-          src={aboutus}
+          src={aboutUs}
           alt="About ApnaProperty"
-          className="rounded-2xl shadow-md w-full object-cover h-72"
+          className="rounded-2xl shadow-md w-full object-cover h-full"
         />
       </section>
 

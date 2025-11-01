@@ -55,7 +55,11 @@ const properties = [
     image: Modern3BHKApparment,
     agent: "Rohan Sharma",
     updated: "2 days ago",
-    location: [19.076, 72.8777],
+    contact: {
+      phone: "+91 98765 43210",
+      email: "rohan.sharma@propertymail.com",
+    },
+    location: [19.076, 72.8777], // Mumbai
   },
   {
     id: 2,
@@ -67,7 +71,11 @@ const properties = [
     image: Elegant5BHKVilla,
     agent: "Priya Singh",
     updated: "1 week ago",
-    location: [28.6139, 77.209],
+    contact: {
+      phone: "+91 98123 45678",
+      email: "priya.singh@propertymail.com",
+    },
+    location: [28.6139, 77.209], // Delhi
   },
   {
     id: 3,
@@ -78,21 +86,28 @@ const properties = [
     image: PrimeCommercialOffice,
     agent: "Arjun Reddy",
     updated: "3 days ago",
-    location: [12.9716, 77.5946],
+    contact: {
+      phone: "+91 91234 56789",
+      email: "arjun.reddy@propertymail.com",
+    },
+    location: [12.9716, 77.5946], // Bangalore
   },
-{
-  id: 4,
-  title: "Exclusive Penthouse",
-  price: "₹ 5.00 Cr",
-  area: "4,500 sqft",
-  type: "Ready to Move",
-  tag: "Premium",
-  image: ExclusivePenthouse,
-  agent: "Sneha Rao",
-  updated: "4 days ago",
-  location: [18.5204, 73.8567], // Pune
-},
-
+  {
+    id: 4,
+    title: "Exclusive Penthouse",
+    price: "₹ 5.00 Cr",
+    area: "4,500 sqft",
+    type: "Ready to Move",
+    tag: "Premium",
+    image: ExclusivePenthouse,
+    agent: "Sneha Rao",
+    updated: "4 days ago",
+    contact: {
+      phone: "+91 99876 54321",
+      email: "sneha.rao@propertymail.com",
+    },
+    location: [18.5204, 73.8567], // Pune
+  },
   {
     id: 5,
     title: "Compact Studio Apartment",
@@ -103,7 +118,11 @@ const properties = [
     image: CompactStudioApartment,
     agent: "Karan Mehta",
     updated: "1 day ago",
-    location: [13.0827, 80.2707],
+    contact: {
+      phone: "+91 90011 22334",
+      email: "karan.mehta@propertymail.com",
+    },
+    location: [13.0827, 80.2707], // Chennai
   },
   {
     id: 6,
@@ -114,7 +133,11 @@ const properties = [
     image: SprawlingFarmhouse,
     agent: "Deepika Prasad",
     updated: "5 days ago",
-    location: [26.9124, 75.7873],
+    contact: {
+      phone: "+91 94455 66778",
+      email: "deepika.prasad@propertymail.com",
+    },
+    location: [26.9124, 75.7873], // Jaipur
   },
   {
     id: 7,
@@ -125,7 +148,11 @@ const properties = [
     image: Luxury4BHKApartment,
     agent: "Ankit Verma",
     updated: "6 days ago",
-    location: [23.0225, 72.5714],
+    contact: {
+      phone: "+91 99555 88776",
+      email: "ankit.verma@propertymail.com",
+    },
+    location: [23.0225, 72.5714], // Ahmedabad
   },
   {
     id: 8,
@@ -137,20 +164,28 @@ const properties = [
     image: ModernDuplexHouse,
     agent: "Shreya Patil",
     updated: "1 day ago",
-    location: [21.1702, 72.8311],
+    contact: {
+      phone: "+91 90909 11122",
+      email: "shreya.patil@propertymail.com",
+    },
+    location: [21.1702, 72.8311], // Surat
   },
- {
-  id: 9,
-  title: "Sea-Facing Villa",
-  price: "₹ 4.75 Cr",
-  area: "3,800 sqft",
-  type: "Ready to Move",
-  tag: "Verified",
-  image: SeaFacingVilla,
-  agent: "Rahul Kapoor",
-  updated: "2 days ago",
-  location: [15.2993, 74.124],
-},
+  {
+    id: 9,
+    title: "Sea-Facing Villa",
+    price: "₹ 4.75 Cr",
+    area: "3,800 sqft",
+    type: "Ready to Move",
+    tag: "Verified",
+    image: SeaFacingVilla,
+    agent: "Rahul Kapoor",
+    updated: "2 days ago",
+    contact: {
+      phone: "+91 93333 44455",
+      email: "rahul.kapoor@propertymail.com",
+    },
+    location: [15.2993, 74.124], // Goa
+  },
   {
     id: 10,
     title: "Modern Office Space",
@@ -160,19 +195,27 @@ const properties = [
     image: ModernOfficeSpace,
     agent: "Divya Chauhan",
     updated: "1 week ago",
-    location: [17.385, 78.4867],
+    contact: {
+      phone: "+91 95555 66677",
+      email: "divya.chauhan@propertymail.com",
+    },
+    location: [17.385, 78.4867], // Hyderabad
   },
- {
-  id: 11,
-  title: "Compact 2BHK Flat",
-  price: "₹ 70 Lakh",
-  area: "950 sqft",
-  type: "Ready to Move",
-  image: Compact2BHKFlat,
-  agent: "Manish Jain",
-  updated: "3 days ago",
-  location: [22.7196, 75.8577],
-},
+  {
+    id: 11,
+    title: "Compact 2BHK Flat",
+    price: "₹ 70 Lakh",
+    area: "950 sqft",
+    type: "Ready to Move",
+    image: Compact2BHKFlat,
+    agent: "Manish Jain",
+    updated: "3 days ago",
+    contact: {
+      phone: "+91 92222 33344",
+      email: "manish.jain@propertymail.com",
+    },
+    location: [22.7196, 75.8577], // Indore
+  },
   {
     id: 12,
     title: "Elegant Townhouse",
@@ -183,7 +226,11 @@ const properties = [
     image: ElegantTownhouse,
     agent: "Neha Bansal",
     updated: "5 days ago",
-    location: [25.5941, 85.1376],
+    contact: {
+      phone: "+91 91111 22233",
+      email: "neha.bansal@propertymail.com",
+    },
+    location: [25.5941, 85.1376], // Patna
   },
 ];
 
@@ -200,27 +247,104 @@ function FitBounds({ markers }) {
 }
 
 // 💡 Property Card
-const PropertyCard = ({ title, image, price, area, type, tag, agent, updated }) => (
-  <Card className="overflow-hidden shadow-md hover:shadow-xl transition rounded-2xl border border-gray-100">
-    <img src={image} alt={title} className="w-full h-56 object-cover" />
-    <CardContent className="p-5">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        {tag && (
-          <Badge variant={tag === "Verified" ? "default" : "secondary"} className="text-xs">
-            {tag}
-          </Badge>
-        )}
-      </div>
-      <p className="text-xl font-semibold text-emerald-600 mb-2">{price}</p>
-      <p className="text-sm text-gray-600 mb-1">{area}</p>
-      <p className="text-sm text-gray-600 mb-3">{type}</p>
-      <p className="text-xs text-gray-500">
-        Agent: {agent} • {updated}
-      </p>
-    </CardContent>
-  </Card>
-);
+const PropertyCard = ({
+  title,
+  image,
+  price,
+  area,
+  type,
+  tag,
+  agent,
+  updated,
+  contact,
+}) => {
+  const [showContact, setShowContact] = useState(false);
+  const [showPhone, setShowPhone] = useState(false);
+
+  return (
+    <Card className="overflow-hidden shadow-md hover:shadow-xl transition rounded-2xl border border-gray-100 bg-white">
+      {/* Property Image */}
+      <img src={image} alt={title} className="w-full h-56 object-cover" />
+
+      <CardContent className="p-5">
+        {/* Property Details */}
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          {tag && (
+            <Badge
+              variant={tag === "Verified" ? "default" : "secondary"}
+              className="text-xs"
+            >
+              {tag}
+            </Badge>
+          )}
+        </div>
+
+        <p className="text-xl font-semibold text-emerald-600 mb-2">{price}</p>
+        <p className="text-sm text-gray-600 mb-1">{area}</p>
+        <p className="text-sm text-gray-600 mb-3">{type}</p>
+
+        {/* Agent + Contact Section */}
+        <div className="flex flex-col border-t border-gray-200 pt-4 mt-4 space-y-3">
+          {/* Agent Info */}
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-sm font-semibold">
+              {agent.charAt(0)}
+            </div>
+            <div>
+              <span className="text-sm font-medium text-gray-900 block">
+                {agent}
+              </span>
+              <span className="text-xs text-gray-500">{updated}</span>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex space-x-2">
+            <Button
+              className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3 py-1 rounded-md"
+              onClick={() => {
+                setShowContact(!showContact);
+                setShowPhone(false);
+              }}
+            >
+              Contact Owner
+            </Button>
+            <Button
+              variant="outline"
+              className="border-gray-300 text-gray-700 hover:bg-gray-100 text-xs px-3 py-1 rounded-md"
+              onClick={() => {
+                setShowPhone(!showPhone);
+                setShowContact(false);
+              }}
+            >
+              Get Phone No.
+            </Button>
+          </div>
+
+          {/* Contact Info */}
+          {showContact && (
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-xs text-gray-700 mt-2">
+              <p><strong>Owner:</strong> {agent}</p>
+              <p><strong>Phone:</strong> {contact?.phone}</p>
+              <p><strong>Email:</strong> {contact?.email}</p>
+            </div>
+          )}
+
+          {showPhone && (
+            <Badge
+              variant="secondary"
+              className="bg-gray-100 text-gray-700 text-xs px-2 py-0.5 rounded-full"
+            >
+              📞 {contact?.phone}
+            </Badge>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 
 export default function PropertyListingPage() {
   const [view, setView] = useState("list");
