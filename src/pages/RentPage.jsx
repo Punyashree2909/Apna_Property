@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import Cozy1BHKApartment from "../assets/images/Cozy 1BHK Apartment.jpg";
 import Modern2BHKFlat from "../assets/images/Modern 2BHK Flat.jpg";
-import CompactStudioApartment from "../assets/images/compact studio apartment.jpg";
+import CompactStudioApartment from "../assets/images/Compact-Studio-Apartment.jpg";
 import Elegant3BHKFamilyHome from "../assets/images/Elegant 3BHK Family Home.jpg";
 import LuxuryServiceApartment from "../assets/images/Luxury Service Apartment.jpg";
 import Budget1BHKNearMetro from "../assets/images/Budget 1BHK Near Metro.jpg";
