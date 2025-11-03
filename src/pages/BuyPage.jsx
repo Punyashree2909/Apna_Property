@@ -23,7 +23,7 @@ import Modern3BHKApparment from "@/assets/images/Modern 3BHK Apartment.jpg";
 import Elegant5BHKVilla from "@/assets/images/Elegant 5BHK Villa.jpg";
 import PrimeCommercialOffice from "@/assets/images/Prime Commercial Office.jpg";
 import ExclusivePenthouse from "@/assets/images/Exclusive Penthouse.jpg";
-import CompactStudioApartment from "@/assets/images/Compact Studio Apartment.jpg";
+import CompactStudioApartment from "@/assets/images/Compact-Studio-Apartment.jpg";
 import SprawlingFarmhouse from "@/assets/images/Sprawling Farmhouse.jpg";
 import Luxury4BHKApartment from "@/assets/images/Luxury 4BHK Apartment.jpg";
 import ModernDuplexHouse from "@/assets/images/Modern Duplex House.jpg";
