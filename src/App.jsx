@@ -1,6 +1,6 @@
 import LandingPage from './components/LandingPage';
 import './index.css';
-import BuyPage from './components/BuyPage';
+import BuyPage from './pages/BuyPage';
 
 function App(){
     return <BuyPage/>
