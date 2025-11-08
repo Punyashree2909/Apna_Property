@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-// --- MODIFIED TermsModal ---
-// Added your specific text and styled it for readability.
+// --- TermsModal Component ---
 const TermsModal = ({ onClose }) => {
   return (
     <>
@@ -22,28 +22,19 @@ const TermsModal = ({ onClose }) => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Terms & Conditions</h2>
-          
-          {/* --- NEW CONTENT --- */}
           <div className="space-y-3 text-sm text-gray-700">
             <p>Welcome to ApnaProperty. By accessing or using our website, you agree to be bound by these terms and conditions.</p>
-            
             <h3 className="font-semibold text-base text-gray-800 pt-2">1. User Conduct</h3>
             <p>You agree not to post any content that is false, misleading, defamatory, or infringes on any third-party rights. All listings must be accurate and represent properties you are legally authorized to market.</p>
-
             <h3 className="font-semibold text-base text-gray-800 pt-2">2. Listing Accuracy</h3>
             <p>ApnaProperty is not responsible for the accuracy of listings provided by users, brokers, or third parties. We do not verify the information and advise all users to conduct their own due diligence before entering into any transaction.</p>
-
             <h3 className="font-semibold text-base text-gray-800 pt-2">3. Intellectual Property</h3>
             <p>All content on this site, including logos, graphics, and text, is the property of ApnaProperty or its content suppliers and is protected by international copyright laws.</p>
-            
             <h3 className="font-semibold text-base text-gray-800 pt-2">4. Limitation of Liability</h3>
             <p>ApnaProperty shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our services, including but not limited to, financial losses or data corruption.</p>
-            
             <p className="pt-2">By checking "I agree to the privacy policy", you also acknowledge that you have read, understood, and agree to be bound by these Terms & Conditions.</p>
           </div>
-          
           <button 
             onClick={onClose}
             className="mt-6 w-full bg-blue-600 text-white p-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
@@ -55,33 +46,49 @@ const TermsModal = ({ onClose }) => {
     </>
   );
 };
+// --- End of TermsModal ---
+
 
 export default function SignUp() {
+  // --- Form Data State ---
   const [fullName, setFullName] = useState('');
   const [userType, setUserType] = useState(''); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  
+  // --- UI State ---
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); 
 
+  // --- Submission State ---
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const navigate = useNavigate(); // Restored useNavigate
+
+  // --- UI Helper Functions ---
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
   const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
   const openModal = (e) => { e.preventDefault(); setIsModalOpen(true); };
 
-  // ✅ API Signup Function
+  // --- handleSubmit Function ---
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatusMessage(""); 
+    setIsSubmitting(true); 
 
+    // --- Validation ---
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setStatusMessage("Passwords do not match!"); 
+      setIsSubmitting(false); 
       return;
     }
 
     if (!agreedToTerms) {
-      alert("You must agree to the Terms & Conditions and Privacy Policy.");
+      setStatusMessage("You must agree to the Terms & Conditions and Privacy Policy."); 
+      setIsSubmitting(false); 
       return;
     }
 
@@ -92,24 +99,34 @@ export default function SignUp() {
       role: userType
     };
 
+    // --- Axios POST Request (Restored) ---
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData)
-      });
+      setStatusMessage("Creating your account..."); 
 
-      const data = await response.json();
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/signup", 
+        userData
+      );
 
-      if (response.ok) {
-        alert("Signup successful! Please login.");
-        window.location.href = "/login";
-      } else {
-        alert(data.message || "Signup failed");
-      }
+      // On Success:
+      setStatusMessage("Signup successful! Redirecting to login...");
+      
+      setTimeout(() => {
+        navigate("/login"); // Restored navigation
+      }, 2000);
+
     } catch (error) {
-      console.error(error);
-      alert("Server error — check backend is running");
+      console.error("Signup Error:", error);
+
+      // --- Error Handling ---
+      if (error.response && error.response.data && error.response.data.message) {
+        setStatusMessage(error.response.data.message);
+      } else if (error.request) {
+        setStatusMessage("Server not responding. (Is your backend running?)");
+      } else {
+        setStatusMessage("Signup failed. Please try again.");
+      }
+      setIsSubmitting(false); 
     }
   };
 
@@ -126,18 +143,16 @@ export default function SignUp() {
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full pl-10 p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
               />
             </div>
 
-            {/* --- MODIFIED DROPDOWN --- */}
-            {/* Wrapped in relative div and added custom arrow */}
             <div className="relative mb-4">
               <select
-                className="w-full pl-10 p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 value={userType}
                 onChange={(e) => setUserType(e.target.value)}
                 required
@@ -147,7 +162,6 @@ export default function SignUp() {
                 <option value="agent">Agent</option>
                 <option value="builder">Builder</option>
               </select>
-              {/* Custom Arrow */}
               <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                 <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -159,13 +173,14 @@ export default function SignUp() {
               <input
                 type="email"
                 placeholder="mail@example.com"
-                className="w-full pl-10 p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
 
+            {/* --- PASSWORD FIELD (EXPANDED) --- */}
             <div className="mb-4">
               <label 
                 htmlFor="password-input" 
@@ -178,7 +193,7 @@ export default function SignUp() {
                   id="password-input"
                   type={isPasswordVisible ? 'text' : 'password'}
                   placeholder="Enter your password"
-                  className="w-full pl-10 p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                  className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -204,6 +219,7 @@ export default function SignUp() {
               </div>
             </div>
 
+            {/* --- CONFIRM PASSWORD FIELD (EXPANDED) --- */}
             <div className="mb-4">
               <label 
                 htmlFor="confirm-password-input" 
@@ -216,7 +232,7 @@ export default function SignUp() {
                   id="confirm-password-input"
                   type={isConfirmPasswordVisible ? 'text' : 'password'}
                   placeholder="Confirm your password"
-                  className="w-full pl-10 p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                  className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
@@ -242,7 +258,6 @@ export default function SignUp() {
               </div>
             </div>
 
-            {/* --- MODIFIED TERMS LINK --- */}
             <div className="flex items-center mb-6">
               <input
                 id="terms-checkbox"
@@ -260,10 +275,22 @@ export default function SignUp() {
               </label>
             </div>
 
-            <button type="submit" className="w-full bg-teal-500 text-white p-3 rounded-lg font-semibold hover:bg-teal-600 transition-colors">
-              Sign Up
+            <button 
+              type="submit" 
+              className="w-full bg-teal-500 text-white p-3 rounded-lg font-semibold hover:bg-teal-600 transition-colors disabled:bg-gray-400"
+              disabled={isSubmitting} 
+            >
+              {isSubmitting ? "Creating Account..." : "Sign Up"} 
             </button>
           </form>
+
+          {statusMessage && (
+            <p className={`text-center text-sm mt-4 ${
+              statusMessage.includes("successful") ? "text-green-700" : "text-red-600"
+            }`}>
+              {statusMessage}
+            </p>
+          )}
 
           <p className="text-sm text-gray-600 mt-6 text-center">
             Already have an account? <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign in</Link>
