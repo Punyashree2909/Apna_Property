@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCity } from '../context/CityContext'; // <-- 1. IMPORT YOUR NEW HOOK
 
 // Re-created Icon component since it was in a separate file
 const Icon = ({ path, className = "w-6 h-6" }) => (
@@ -39,17 +40,15 @@ const budgetOptions = {
 // Selection Modal Component
 const SelectionModal = ({ title, options, onClose, onSelect, gridColsClass = "grid-cols-2 sm:grid-cols-3 md:grid-cols-4" }) => {
   return (
-    // Backdrop with blur
+    // ... (No changes in this component)
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30 transition-opacity" // Changed for blur effect
+      className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30 transition-opacity"
       onClick={onClose}
     >
-      {/* Modal Panel */}
       <div
         className="relative z-60 w-full max-w-3xl overflow-hidden rounded-xl bg-white p-6 shadow-2xl transition-all"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()} 
       >
-        {/* Modal Header */}
         <div className="flex items-center justify-between pb-4 border-b border-gray-200">
           <h2 className="text-2xl font-semibold text-gray-800">{title}</h2>
           <button
@@ -61,7 +60,6 @@ const SelectionModal = ({ title, options, onClose, onSelect, gridColsClass = "gr
           </button>
         </div>
         
-        {/* Items Grid */}
         <div className="mt-6 max-h-[60vh] overflow-y-auto pr-2">
           <div className={`grid ${gridColsClass} gap-4`}>
             {options.map((option) => (
@@ -85,8 +83,9 @@ const HeroSection = () => {
   // State for the active tab (Buy, Rent, Commercial)
   const [activeTab, setActiveTab] = useState('buy');
   
-  // State for the selected city
-  const [selectedCity, setSelectedCity] = useState('Bengaluru'); // Default from image
+  // <-- 2. REPLACE LOCAL STATE WITH GLOBAL CONTEXT STATE -->
+  // const [selectedCity, setSelectedCity] = useState('Bengaluru'); // <-- DELETE THIS LINE
+  const { selectedCity, setSelectedCity } = useCity(); // <-- ADD THIS LINE
   
   // State for controlling the city modal
   const [isCityModalOpen, setIsCityModalOpen] = useState(false);
@@ -101,7 +100,8 @@ const HeroSection = () => {
 
   // Handler to change the selected city
   const handleCitySelect = (city) => {
-    setSelectedCity(city);
+    // <-- 3. THIS FUNCTION NOW UPDATES THE *GLOBAL* STATE! -->
+    setSelectedCity(city); 
     setIsCityModalOpen(false);
   };
 
@@ -150,6 +150,7 @@ const HeroSection = () => {
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4 w-full max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            {/* This {selectedCity} now comes from the global context! */}
             We've got properties in <span className="text-teal-400">{selectedCity}</span> for everyone
           </h1>
           
@@ -158,21 +159,22 @@ const HeroSection = () => {
             
             {/* Tabs: Buy, Rent, Commercial */}
             <div className="flex border-b border-gray-200 -mt-4 -mx-4 md:-mt-6 md:-mx-6 mb-4 md:mb-6">
+              {/* ... (No changes in the tabs) ... */}
               <button
                 onClick={() => handleTabClick('buy')}
-                className={`${tabButtonClass} ${activeTab === 'buy' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+                className={`${tabButtonClass} ${activeTab === 'buy' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
               >
                 Buy
               </button>
               <button
                 onClick={() => handleTabClick('rent')}
-                className={`${tabButtonClass} ${activeTab === 'rent' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+                className={`${tabButtonClass} ${activeTab === 'rent' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
               >
                 Rent
               </button>
               <button
                 onClick={() => handleTabClick('commercial')}
-                className={`${tabButtonClass} ${activeTab === 'commercial' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:text-gray-800'}`}
+                className={`${tabButtonClass} ${activeTab === 'commercial' ? 'border-teal-500 text-teal-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}
               >
                 Commercial
               </button>
@@ -180,26 +182,30 @@ const HeroSection = () => {
 
             {/* Search Input and Button */}
             <div className="flex flex-col md:flex-row gap-4 items-center">
-              <div className="relative w-full flex-grow">
-                <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5 absolute top-1/2 left-4 -translate-y-1/2 text-gray-400" />
+              {/* ... (No changes in the search input) ... */}
+              <div className="relative flex-grow w-full">
                 <input
                   type="text"
-                  placeholder="Search for locality, landmark, project or builder"
-                  className="w-full h-14 pl-12 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  placeholder={`Search for locality, project, or builder in ${selectedCity}`}
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                  <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
+                </div>
               </div>
-              <button className="w-full md:w-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 h-14">
+              <button className="w-full md:w-auto bg-teal-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2">
                 <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
                 <span>Search</span>
               </button>
             </div>
 
             {/* Filter Buttons (now 3) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"> {/* Adjusted grid-cols */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4"> 
               <button 
-                onClick={() => setIsCityModalOpen(true)} // This opens the modal
+                onClick={() => setIsCityModalOpen(true)}
                 className={filterButtonClass}
               >
+                {/* This {selectedCity} also comes from the global context! */}
                 <span>{selectedCity}</span>
                 <Icon path="M19 9l-7 7-7-7" className="w-4 h-4 text-gray-500" />
               </button>
@@ -217,7 +223,6 @@ const HeroSection = () => {
                 <span>{selectedBudget}</span>
                 <Icon path="M19 9l-7 7-7-7" className="w-4 h-4 text-gray-500" />
               </button>
-              {/* "More Filters" button removed */}
             </div>
             
           </div>
@@ -230,6 +235,7 @@ const HeroSection = () => {
           title="Select a City"
           options={famousCities}
           onClose={() => setIsCityModalOpen(false)} 
+          // This onSelect now calls the handler that updates GLOBAL state!
           onSelect={handleCitySelect} 
         />
       )}
