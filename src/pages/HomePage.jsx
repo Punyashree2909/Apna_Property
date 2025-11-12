@@ -53,9 +53,9 @@ function HomePage() {
 
       try {
         // !!! Replace these with your actual backend endpoints
-        const popularPropsEndpoint = axios.get('http://your-backend-api.com/api/properties?featured=true&limit=4');
-        const freshPropsEndpoint = axios.get('http://your-backend-api.com/api/properties?sort=new&limit=4');
-        const agentsEndpoint = axios.get('http://your-backend-api.com/api/agents?preferred=true&limit=5');
+        const popularPropsEndpoint = axios.get('http://127.0.0.1:5000/api/properties?featured=true&limit=4');
+        const freshPropsEndpoint = axios.get('http://127.0.0.1:5000/api/properties?sort=new&limit=4');
+        const agentsEndpoint = axios.get('http://127.0.0.1:5000/api/agents?preferred=true&limit=5');
 
         // Use Promise.all to run all requests at the same time
         const [popularResponse, freshResponse, agentsResponse] = await Promise.all([

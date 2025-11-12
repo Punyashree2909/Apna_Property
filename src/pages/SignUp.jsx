@@ -93,10 +93,10 @@ export default function SignUp() {
     }
 
     const userData = {
-      name: fullName,
+      fullName,
       email,
       password,
-      role: userType
+      userType
     };
 
     // --- Axios POST Request (Restored) ---
@@ -142,6 +142,7 @@ export default function SignUp() {
             <div className="mb-4">
               <input
                 type="text"
+                name='fullName'
                 placeholder="Full Name"
                 className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 value={fullName}
@@ -153,14 +154,15 @@ export default function SignUp() {
             <div className="relative mb-4">
               <select
                 className="w-full p-3 border border-gray-200 rounded-lg bg-gray-50 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                name='userType'
                 value={userType}
                 onChange={(e) => setUserType(e.target.value)}
                 required
               >
                 <option value="" disabled>Select User Type</option>
-                <option value="buyer_owner">Buyer/Owner</option>
-                <option value="agent">Agent</option>
-                <option value="builder">Builder</option>
+                <option value="Buyer">Buyer/Owner</option>
+                <option value="Agent">Agent</option>
+                <option value="Seller">Seller</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                 <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
