@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
+import leadRoutes from "./routes/leadRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -15,6 +19,10 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/leads", leadRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/bookings", bookingRoutes);
+app.use("/api/payments", paymentRoutes);
 
 // Base test route
 app.get("/", (req, res) => {
