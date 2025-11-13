@@ -1,16 +1,14 @@
     
-  import React, { useState, useRef } from 'react'; // Import useRef
-
+  import React, { useState, useRef } from 'react';
   import { Link, NavLink } from 'react-router-dom';
-
+  import { useAuth } from '../context/AuthContext';
   import Icon from './Icon.jsx';
-
   import logoImage from '../assets/no background logo.png';
 
 
 
   const Header = () => {
-
+    const { isAuthenticated, user, logout } = useAuth();
     const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
 
    
@@ -133,95 +131,46 @@
 
 
 
-            {/* --- MODIFIED SECTION --- */}
-
-            <div
-
-              className="hidden md:block relative"
-
-              onMouseEnter={handleMenuEnter} // Changed
-
-              onMouseLeave={handleMenuLeave} // Changed
-
-            >
-
-              {/* The visible button */}
-
-              <button
-
-                type="button"
-
-                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-
-              >
-
-                Log In
-
-              </button>
-
-
-
-              {/* Dropdown Popup */}
-
-              {isLoginMenuOpen && (
-
-                <div
-
-                  className="absolute top-full right-0 mt-2 w-max min-w-[200px] bg-white shadow-lg rounded-md p-4 border border-gray-200 z-50"
-
-                  // We don't need to add handlers here because this div is *inside*
-
-                  // the wrapper div that already has them.
-
-                >
-
-                  {/* Login button inside popup */}
-
-                  <Link
-
-                    to="/login"
-
-                    className="block w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-
-                    onClick={() => setIsLoginMenuOpen(false)}
-
-                  >
-
-                    Log In
-
-                  </Link>
-
-
-
-                  {/* Sign Up text */}
-
-                  <p className="text-sm text-gray-600 mt-3 text-center">
-
-                    New to ApnaProperty?{' '}
-
-                    <Link
-
-                      to="/signup"
-
-                      className="text-blue-600 hover:underline font-semibold"
-
-                      onClick={() => setIsLoginMenuOpen(false)}
-
-                    >
-
-                      Sign Up here
-
+            {/* Auth Section */}
+            {isAuthenticated ? (
+              <div className="hidden md:block relative" onMouseEnter={handleMenuEnter} onMouseLeave={handleMenuLeave}>
+                <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+                  {user?.fullName || 'User'}
+                </button>
+                {isLoginMenuOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-max min-w-[200px] bg-white shadow-lg rounded-md p-4 border border-gray-200 z-50">
+                    <Link to="/profile" className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded" onClick={() => setIsLoginMenuOpen(false)}>
+                      My Profile
                     </Link>
-
-                  </p>
-
-                </div>
-
-              )}
-
-            </div>
-
-            {/* --- END MODIFIED SECTION --- */}
+                    <Link to="/my-properties" className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded" onClick={() => setIsLoginMenuOpen(false)}>
+                      My Properties
+                    </Link>
+                    <button onClick={() => { logout(); setIsLoginMenuOpen(false); }} className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100 rounded">
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="hidden md:block relative" onMouseEnter={handleMenuEnter} onMouseLeave={handleMenuLeave}>
+                <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+                  Log In
+                </button>
+                {isLoginMenuOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-max min-w-[200px] bg-white shadow-lg rounded-md p-4 border border-gray-200 z-50">
+                    <Link to="/login" className="block w-full text-center bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors" onClick={() => setIsLoginMenuOpen(false)}>
+                      Log In
+                    </Link>
+                    <p className="text-sm text-gray-600 mt-3 text-center">
+                      New to ApnaProperty?{' '}
+                      <Link to="/signup" className="text-blue-600 hover:underline font-semibold" onClick={() => setIsLoginMenuOpen(false)}>
+                        Sign Up here
+                      </Link>
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
 
 
 

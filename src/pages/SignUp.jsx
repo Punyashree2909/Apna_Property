@@ -93,10 +93,10 @@ export default function SignUp() {
     }
 
     const userData = {
-      name: fullName,
+      fullName,
+      userType,
       email,
-      password,
-      role: userType
+      password
     };
 
     // --- Axios POST Request (Restored) ---
@@ -158,9 +158,9 @@ export default function SignUp() {
                 required
               >
                 <option value="" disabled>Select User Type</option>
-                <option value="buyer_owner">Buyer/Owner</option>
-                <option value="agent">Agent</option>
-                <option value="builder">Builder</option>
+                <option value="Buyer">Buyer</option>
+                <option value="Seller">Seller</option>
+                <option value="Agent">Agent</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
                 <svg className="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

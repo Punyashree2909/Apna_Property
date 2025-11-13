@@ -35,7 +35,7 @@ const PropertyCard = ({ property }) => (
     {/* Image container */}
     <div className="relative h-48">
       <img
-        src={property?.image || "/placeholder.jpg"}
+        src={property?.imageUrl || "/placeholder.jpg"}
         alt={property?.title || "Untitled Property"}
         className="h-48 w-full object-cover"
       />
@@ -46,7 +46,7 @@ const PropertyCard = ({ property }) => (
     <div className="p-4 flex flex-col flex-grow">
       {/* Price: Moved to top, made larger */}
       <p className="text-emerald-600 font-semibold text-lg">
-        {formatPrice(property?.price)}
+        {property?.price || "Price on request"}
       </p>
 
       {/* Title: Changed font weight and size */}
@@ -56,7 +56,7 @@ const PropertyCard = ({ property }) => (
 
       {/* Area: Kept simple, as per design */}
       <p className="text-gray-500 text-sm mt-1">
-        {property?.area ? `${property.area} sq ft` : "Area not available"}
+        {property?.sqft ? `${property.sqft} sq ft` : "Area not available"}
       </p>
       
       {/* This spacer pushes the location to the bottom of the card */}

@@ -1,7 +1,8 @@
 // --- MODIFIED: Added axios and useNavigate ---
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // <-- MODIFIED
-import axios from 'axios'; // <-- ADD THIS
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 // --- TermsModal Component ---
 // (This component is fine, no changes needed)
@@ -55,7 +56,8 @@ export default function SignIn() {
   // --- ADD THESE NEW STATE VARIABLES ---
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
-  const navigate = useNavigate(); // <-- ADD THIS
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
 
@@ -82,20 +84,20 @@ export default function SignIn() {
       // On Success:
       setStatusMessage("Login successful! Redirecting...");
 
-      // ✅ Save JWT token (using axios response data)
-      localStorage.setItem("token", response.data.token);
+      // ✅ Use auth context to login
+      login(response.data.user, response.data.token);
 
       // ✅ Optional: save email if remember me checked
       if (rememberMe) {
         localStorage.setItem("userEmail", email);
       } else {
-         localStorage.removeItem("userEmail"); // Clear if unchecked
+         localStorage.removeItem("userEmail");
       }
 
-      // ✅ Redirect to home page (using navigate)
+      // ✅ Redirect to home page
       setTimeout(() => {
-        navigate("/"); // Redirect to home page
-      }, 1500); // 1.5 second delay to show success message
+        navigate("/");
+      }, 1500);
 
     } catch (error) {
       console.error("Login Error:", error);

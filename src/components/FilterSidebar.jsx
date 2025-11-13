@@ -7,69 +7,113 @@ const FilterSidebar = ({ filters, setFilters }) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
+  const clearFilters = () => {
+    setFilters({
+      search: "",
+      location: "",
+      propertyType: "",
+      minSqft: "",
+      maxSqft: ""
+    });
+  };
+
   return (
     <aside className="w-full md:w-1/4 bg-white border rounded-lg p-4 h-fit shadow-sm">
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-semibold text-gray-700">Filters</h3>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-sm text-emerald-600"
-        >
-          {isOpen ? "Hide" : "Show"}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={clearFilters}
+            className="text-xs text-gray-500 hover:text-gray-700"
+          >
+            Clear
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-sm text-emerald-600"
+          >
+            {isOpen ? "Hide" : "Show"}
+          </button>
+        </div>
       </div>
 
       {isOpen && (
         <div className="space-y-6">
-          {/* Price Filter */}
+          {/* Search Filter */}
           <div>
             <label className="block font-medium text-gray-600 mb-1">
-              Price (in Cr)
+              Search
             </label>
             <input
-              type="range"
-              min="0.5"
-              max="5"
-              step="0.1"
-              value={filters.price}
-              onChange={(e) => handleChange("price", e.target.value)}
-              className="w-full accent-emerald-600"
+              type="text"
+              placeholder="Search properties..."
+              value={filters.search || ""}
+              onChange={(e) => handleChange("search", e.target.value)}
+              className="w-full border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
             />
-            <div className="text-sm text-gray-500">Up to ₹ {filters.price} Cr</div>
           </div>
 
-          {/* Bedroom Filter */}
+          {/* Location Filter */}
           <div>
             <label className="block font-medium text-gray-600 mb-1">
-              Bedrooms
+              Location
             </label>
             <select
-              value={filters.beds}
-              onChange={(e) => handleChange("beds", e.target.value)}
+              value={filters.location || ""}
+              onChange={(e) => handleChange("location", e.target.value)}
               className="w-full border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
             >
-              <option value="">Any</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-              <option value="4">4+</option>
-              <option value="5">5+</option>
+              <option value="">All Locations</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai, Maharashtra</option>
+              <option value="Bangalore">Bangalore, Karnataka</option>
+              <option value="Pune">Pune, Maharashtra</option>
+              <option value="Gurgaon">Gurgaon, Haryana</option>
+              <option value="Noida">Noida, Uttar Pradesh</option>
+              <option value="Thane">Thane, Maharashtra</option>
+              <option value="Jaipur">Jaipur, Rajasthan</option>
+            </select>
+          </div>
+
+          {/* Property Type Filter */}
+          <div>
+            <label className="block font-medium text-gray-600 mb-1">
+              Property Type
+            </label>
+            <select
+              value={filters.propertyType || ""}
+              onChange={(e) => handleChange("propertyType", e.target.value)}
+              className="w-full border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
+            >
+              <option value="">All Types</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="House">House</option>
+              <option value="Plot">Plot</option>
             </select>
           </div>
 
           {/* Area Filter */}
           <div>
             <label className="block font-medium text-gray-600 mb-1">
-              Minimum Area (sq.ft)
+              Area (sq.ft)
             </label>
-            <input
-              type="number"
-              min="500"
-              max="5000"
-              step="100"
-              value={filters.area}
-              onChange={(e) => handleChange("area", e.target.value)}
-              className="w-full border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
-            />
+            <div className="flex gap-2">
+              <input
+                type="number"
+                placeholder="Min"
+                value={filters.minSqft || ""}
+                onChange={(e) => handleChange("minSqft", e.target.value)}
+                className="w-1/2 border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
+              />
+              <input
+                type="number"
+                placeholder="Max"
+                value={filters.maxSqft || ""}
+                onChange={(e) => handleChange("maxSqft", e.target.value)}
+                className="w-1/2 border rounded-md p-2 text-sm focus:ring-emerald-100 focus:border-emerald-400"
+              />
+            </div>
           </div>
         </div>
       )}
