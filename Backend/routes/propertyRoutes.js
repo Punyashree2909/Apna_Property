@@ -50,6 +50,20 @@ router.get("/", async (req, res) => {
       properties = properties.filter(p => p.sqft <= parseInt(maxSqft));
     }
     
+    if (minPrice) {
+      properties = properties.filter(p => {
+        const numPrice = typeof p.price === 'number' ? p.price : parseFloat(p.price.replace(/[^0-9.]/g, '')) * (p.price.includes('Cr') ? 10000000 : 100000);
+        return numPrice >= parseInt(minPrice);
+      });
+    }
+    
+    if (maxPrice) {
+      properties = properties.filter(p => {
+        const numPrice = typeof p.price === 'number' ? p.price : parseFloat(p.price.replace(/[^0-9.]/g, '')) * (p.price.includes('Cr') ? 10000000 : 100000);
+        return numPrice <= parseInt(maxPrice);
+      });
+    }
+    
     res.json(properties);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch properties", error });

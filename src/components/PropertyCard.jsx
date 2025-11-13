@@ -46,7 +46,7 @@ const PropertyCard = ({ property }) => (
     <div className="p-4 flex flex-col flex-grow">
       {/* Price: Moved to top, made larger */}
       <p className="text-emerald-600 font-semibold text-lg">
-        {property?.price || "Price on request"}
+        {typeof property?.price === 'number' ? formatPrice(property.price) : (property?.price || "Price on request")}
       </p>
 
       {/* Title: Changed font weight and size */}

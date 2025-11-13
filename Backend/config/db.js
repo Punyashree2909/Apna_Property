@@ -3,19 +3,19 @@ import sqlite3 from "sqlite3";
 let db;
 
 const connectDB = () => {
-  db = new sqlite3.Database(':memory:', (err) => {
+  db = new sqlite3.Database('./apna_property.db', (err) => {
     if (err) {
       console.error("❌ SQLite connection failed:", err.message);
       process.exit(1);
     }
-    console.log("✅ SQLite in-memory database connected");
+    console.log("✅ SQLite database connected");
     initTables();
   });
 };
 
 const initTables = () => {
   db.serialize(() => {
-    db.run(`CREATE TABLE users (
+    db.run(`CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       fullName TEXT NOT NULL,
       userType TEXT NOT NULL,
@@ -24,7 +24,7 @@ const initTables = () => {
       createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
     )`);
     
-    db.run(`CREATE TABLE properties (
+    db.run(`CREATE TABLE IF NOT EXISTS properties (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       title TEXT NOT NULL,
       price TEXT NOT NULL,

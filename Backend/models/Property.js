@@ -36,8 +36,21 @@ class Property {
 
   static update(id, ownerId, updateData) {
     return new Promise((resolve, reject) => {
-      const fields = Object.keys(updateData).map(key => `${key} = ?`).join(', ');
-      const values = Object.values(updateData);
+      const processedData = { ...updateData };
+      if (processedData.tags && Array.isArray(processedData.tags)) {
+        processedData.tags = JSON.stringify(processedData.tags);
+      }
+      
+      const allowedFields = ['title', 'price', 'tags', 'imageUrl', 'photoCount', 'sqft', 'status', 'floor', 'description', 'listerName', 'listerAvatar', 'location', 'propertyType'];
+      const filteredData = Object.keys(processedData)
+        .filter(key => allowedFields.includes(key))
+        .reduce((obj, key) => {
+          obj[key] = processedData[key];
+          return obj;
+        }, {});
+      
+      const fields = Object.keys(filteredData).map(key => `${key} = ?`).join(', ');
+      const values = Object.values(filteredData);
       values.push(id, ownerId);
       
       db.run(

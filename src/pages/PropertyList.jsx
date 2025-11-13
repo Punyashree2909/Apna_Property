@@ -12,6 +12,8 @@ const PropertyList = () => {
     search: searchParams.get('search') || "",
     location: searchParams.get('location') || "",
     propertyType: "",
+    minPrice: "",
+    maxPrice: "",
     minSqft: "",
     maxSqft: ""
   });
@@ -30,6 +32,8 @@ const PropertyList = () => {
         if (filters.search) params.append('search', filters.search);
         if (filters.location) params.append('location', filters.location);
         if (filters.propertyType) params.append('propertyType', filters.propertyType);
+        if (filters.minPrice) params.append('minPrice', filters.minPrice);
+        if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
         if (filters.minSqft) params.append('minSqft', filters.minSqft);
         if (filters.maxSqft) params.append('maxSqft', filters.maxSqft);
 
