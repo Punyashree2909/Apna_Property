@@ -92,7 +92,7 @@ export default function AboutUs() {
         </div>
         <div>
           <h2 className="text-2xl font-semibold mb-3">Our Vision</h2>
-    L       <p className="text-gray-600">
+           <p className="text-gray-600">
             Our vision is to be the leading real estate platform, known for innovation, integrity, 
             and customer satisfaction. We aim to revolutionize the property market through technology 
             and trust, making property ownership a joyful experience for all.
@@ -139,14 +139,55 @@ Read       <p className="text-gray-600 mt-2">
         </div>
       </section>
 
-      {/* ======= TEAM SECTION ======= */}
-      {/* ... (no changes here) ... */}
-      <section className="max-w-6xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-3xl font-bold mb-12 text-gray-900">
-          Meet Our <span className="text-green-700">Team</span>
-        </h2>
-        {/* ... (rest of team section) ... */}
-      </section>
+      
+
+{/* ======= TEAM SECTION ======= */}
+<section className="max-w-7xl mx-auto px-4 py-24">
+  <h2 className="text-4xl font-extrabold text-center mb-4 text-gray-900 tracking-tight">
+    Meet Our <span className="text-green-700">Team</span>
+  </h2>
+  <p className="text-center text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
+    A passionate team building modern, powerful, and user-friendly real estate solutions.
+  </p>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    {[
+      { name: "Punyashree Wanare", role: "Founder & Developer" },
+      { name: "Kalyani Dande", role: "UI/UX Designer" },
+      { name: "Owais Ahmed", role: "Backend Engineer" },
+      { name: "Shahid Khan", role: "Project Manager" },
+      { name: "Ayushi Raipure", role: "Marketing Specialist" },
+    ].map((member, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-3xl border border-gray-200 shadow-md p-10 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      >
+        {/* Initials Circle */}
+        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-green-600 to-green-400 text-white flex items-center justify-center text-3xl font-bold shadow-md">
+          {member.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .slice(0, 2)
+            .toUpperCase()}
+        </div>
+
+        {/* Name */}
+        <h3 className="text-2xl font-semibold text-gray-800">{member.name}</h3>
+
+        {/* Role */}
+        <p className="text-green-700 font-medium mt-1">{member.role}</p>
+
+        {/* Description */}
+        <p className="text-gray-600 text-sm mt-4">
+          Dedicated to delivering innovation, quality, and seamless user experiences.
+        </p>
+      </div>
+    ))}
+
+  </div>
+</section>
 
 
       {/* ======= CONTACT ======= */}
