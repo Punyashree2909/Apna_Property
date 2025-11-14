@@ -38,8 +38,23 @@ function HomePage() {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/properties');
-        setProperties(response.data);
+        // !!! Replace these with your actual backend endpoints
+        const popularPropsEndpoint = axios.get('http://127.0.0.1:5000/api/properties?featured=true&limit=4');
+        const freshPropsEndpoint = axios.get('http://127.0.0.1:5000/api/properties?sort=new&limit=4');
+        const agentsEndpoint = axios.get('http://127.0.0.1:5000/api/agents?preferred=true&limit=5');
+
+        // Use Promise.all to run all requests at the same time
+        const [popularResponse, freshResponse, agentsResponse] = await Promise.all([
+          popularPropsEndpoint,
+          freshPropsEndpoint,
+          agentsEndpoint
+        ]);
+
+        // Set all the data into state
+        setPopularProps(popularResponse.data);
+        setFreshProps(freshResponse.data);
+        setAgents(agentsResponse.data);
+
       } catch (err) {
         console.error("Error fetching properties:", err);
         setError("Failed to load properties.");
