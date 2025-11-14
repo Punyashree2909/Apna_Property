@@ -1,10 +1,37 @@
-import mongoose from "mongoose";
+import { db } from "../config/db.js";
 
-const userSchema = new mongoose.Schema({
-  fullName: { type: String, required: true },
-  userType: { type: String, enum: ["Buyer", "Seller", "Agent"], required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-}, { timestamps: true });
+class User {
+  static create(userData) {
+    return new Promise((resolve, reject) => {
+      const { fullName, userType, email, password } = userData;
+      db.run(
+        "INSERT INTO users (fullName, userType, email, password) VALUES (?, ?, ?, ?)",
+        [fullName, userType, email, password],
+        function(err) {
+          if (err) reject(err);
+          else resolve({ id: this.lastID, ...userData });
+        }
+      );
+    });
+  }
 
-export default mongoose.model("User", userSchema);
+  static findByEmail(email) {
+    return new Promise((resolve, reject) => {
+      db.get("SELECT * FROM users WHERE email = ?", [email], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      });
+    });
+  }
+
+  static findById(id) {
+    return new Promise((resolve, reject) => {
+      db.get("SELECT * FROM users WHERE id = ?", [id], (err, row) => {
+        if (err) reject(err);
+        else resolve(row);
+      });
+    });
+  }
+}
+
+export default User;

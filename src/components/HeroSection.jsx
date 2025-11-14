@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useCity } from '../context/CityContext'; // <-- 1. IMPORT YOUR NEW HOOK
+import { useNavigate } from 'react-router-dom';
+import { useCity } from '../context/CityContext';
 
 // Re-created Icon component since it was in a separate file
 const Icon = ({ path, className = "w-6 h-6" }) => (
@@ -80,8 +81,10 @@ const SelectionModal = ({ title, options, onClose, onSelect, gridColsClass = "gr
 
 // Main Hero Section Component
 const HeroSection = () => {
+  const navigate = useNavigate();
   // State for the active tab (Buy, Rent, Commercial)
   const [activeTab, setActiveTab] = useState('buy');
+  const [searchQuery, setSearchQuery] = useState('');
   
   // <-- 2. REPLACE LOCAL STATE WITH GLOBAL CONTEXT STATE -->
   // const [selectedCity, setSelectedCity] = useState('Bengaluru'); // <-- DELETE THIS LINE
@@ -123,6 +126,22 @@ const HeroSection = () => {
     // Reset dependent filters
     setSelectedPropertyType('Property Type');
     setSelectedBudget('Budget');
+  };
+
+  // Handler for search
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.append('search', searchQuery);
+    if (selectedCity) params.append('location', selectedCity);
+    
+    // Navigate to different pages based on active tab
+    const routes = {
+      buy: '/buy',
+      rent: '/rent', 
+      commercial: '/commercial'
+    };
+    
+    navigate(`${routes[activeTab]}?${params.toString()}`);
   };
 
   // Common class for tab buttons
@@ -188,12 +207,18 @@ const HeroSection = () => {
                   type="text"
                   placeholder={`Search for locality, project, or builder in ${selectedCity}`}
                   className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
                   <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
                 </div>
               </div>
-              <button className="w-full md:w-auto bg-teal-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2">
+              <button 
+                onClick={handleSearch}
+                className="w-full md:w-auto bg-teal-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-teal-600 transition-all flex items-center justify-center gap-2"
+              >
                 <Icon path="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" className="w-5 h-5" />
                 <span>Search</span>
               </button>
