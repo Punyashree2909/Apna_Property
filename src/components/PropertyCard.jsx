@@ -21,54 +21,59 @@ const LocationIcon = () => (
 const formatPrice = (price) => {
   if (!price || isNaN(price)) return "Price on request";
   if (price >= 10000000) { // 1 Crore
-    return `₹ ${(price / 10000000).toFixed(1)} Cr`;
+    return `₹${(price / 10000000).toFixed(1)} Cr`;
   }
   if (price >= 100000) { // 1 Lakh
-    return `₹ ${(price / 100000).toFixed(0)} Lac`;
+    return `₹${(price / 100000).toFixed(0)} Lac`;
   }
-  // Fallback for smaller numbers
-  return `₹ ${price.toLocaleString("en-IN")}`;
+  return `₹${price.toLocaleString("en-IN")}`;
 };
 
-const PropertyCard = ({ property }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-all duration-300 flex flex-col h-full cursor-pointer hover:-translate-y-1 hover:shadow-xl">
-    {/* Image container */}
-    <div className="relative h-48">
-      <img
-        src={property?.imageUrl || "/placeholder.jpg"}
-        alt={property?.title || "Untitled Property"}
-        className="h-48 w-full object-cover"
-      />
-    </div>
+const PropertyCard = ({ property }) => {
+  if (!property) return null;
+  
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-all duration-300 flex flex-col h-full cursor-pointer hover:-translate-y-1 hover:shadow-xl">
+      {/* Image container */}
+      <div className="relative h-48">
+        <img
+          src={property.imageUrl || "https://images.unsplash.com/photo-1580587771525-78b9e191414d?w=600&auto=format&fit=crop"}
+          alt={property.title || "Property"}
+          className="h-48 w-full object-cover"
+          onError={(e) => {
+            e.target.src = "https://images.unsplash.com/photo-1580587771525-78b9e191414d?w=600&auto=format&fit=crop";
+          }}
+        />
+      </div>
 
-    {/* Content container */}
-    {/* Changed to p-4 for more padding and flex-grow to push location to bottom */}
-    <div className="p-4 flex flex-col flex-grow">
-      {/* Price: Moved to top, made larger */}
-      <p className="text-emerald-600 font-semibold text-lg">
-        {typeof property?.price === 'number' ? formatPrice(property.price) : (property?.price || "Price on request")}
-      </p>
+      {/* Content container */}
+      <div className="p-4 flex flex-col flex-grow">
+        {/* Price */}
+        <p className="text-emerald-600 font-semibold text-lg">
+          {typeof property.price === 'number' ? formatPrice(property.price) : (property.price || "Price on request")}
+        </p>
 
-      {/* Title: Changed font weight and size */}
-      <h3 className="font-semibold text-gray-900 text-lg mt-1">
-        {property?.title || "No title"}
-      </h3>
+        {/* Title */}
+        <h3 className="font-semibold text-gray-900 text-lg mt-1">
+          {property.title || "Property"}
+        </h3>
 
-      {/* Area: Kept simple, as per design */}
-      <p className="text-gray-500 text-sm mt-1">
-        {property?.sqft ? `${property.sqft} sq ft` : "Area not available"}
-      </p>
-      
-      {/* This spacer pushes the location to the bottom of the card */}
-      <div className="flex-grow" />
+        {/* Area */}
+        <p className="text-gray-500 text-sm mt-1">
+          {property.sqft ? `${property.sqft} sq ft` : "Area not specified"}
+        </p>
+        
+        {/* Spacer */}
+        <div className="flex-grow" />
 
-      {/* Location: Moved to bottom, added icon */}
-      <div className="flex items-center text-gray-500 text-sm mt-3">
-        <LocationIcon />
-        <span className="truncate">{property?.location || "Unknown location"}</span>
+        {/* Location */}
+        <div className="flex items-center text-gray-500 text-sm mt-3">
+          <LocationIcon />
+          <span className="truncate">{property.location || "Location not specified"}</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default PropertyCard;
